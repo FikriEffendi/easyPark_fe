@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <div class="text-xl">Hi dude</div>
 </template>
 
 <script setup></script>

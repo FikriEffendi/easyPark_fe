@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <div class="text-amber-400 text-5xl">Testing</div>
 </template>
 
 <script setup></script>
