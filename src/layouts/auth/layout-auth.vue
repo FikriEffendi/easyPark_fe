@@ -1,5 +1,7 @@
 <template>
-  <div class="text-5xl bg-amber-900">Ini layout auth</div>
+  <div>
+    <router-view />
+  </div>
 </template>
 
 <script setup></script>
