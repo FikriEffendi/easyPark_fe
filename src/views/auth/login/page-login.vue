@@ -29,6 +29,28 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useAuthStore } from '@/stores/auth'
+import { ref } from 'process'
+
+const authStore = useAuthStore()
+
+const form = ref({
+  email: '',
+  password: '',
+})
+
+const errorMessage = ref('')
+
+const handleLogin = async () => {
+  errorMessage.value = ''
+
+  const result = await authStore.login(form.value)
+
+  if (!result.success) {
+    errorMessage.value = result.message
+  }
+}
+</script>
 
 <style scoped></style>
