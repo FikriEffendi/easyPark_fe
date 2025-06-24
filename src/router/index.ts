@@ -13,12 +13,12 @@ const router = createRouter({
       component: LayoutAuth,
       children: [
         {
-          path: 'login',
+          path: '/login',
           name: 'login',
           component: Login,
         },
         {
-          path: 'register',
+          path: '/register',
           name: 'register',
           component: Register,
         },
@@ -30,7 +30,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
       children: [
         {
-          path: '/',
+          path: '',
           name: 'home',
           component: HomeView,
           meta: { requiresAuth: true },
