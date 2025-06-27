@@ -5,37 +5,29 @@
 
       <form @submit.prevent="submit" class="space-y-3">
         <div class="space-y-0.5">
-          <label for="email" class="block text-lg">email</label>
-          <input
+          <g-input
             id="email"
             v-model="form.email"
             type="email"
             placeholder="Email"
-            class="bg-[#D8D8D8] rounded-md py-2 px-1 w-full"
-            :class="{ 'border-red-500': errors?.email }"
             required
+            :error="errors?.email"
+            label="Email"
           />
         </div>
         <div class="space-y-0.5">
-          <label for="password" class="block text-lg">Password</label>
-          <input
+          <g-input
             id="password"
             v-model="form.password"
             type="password"
             placeholder="Password"
-            class="bg-[#D8D8D8] rounded-md py-2 px-1 w-full"
-            :class="{ 'border-red-500': errors?.password }"
+            label="Password"
+            :error="errors?.password"
             required
           />
         </div>
         <div>
-          <button
-            class="text-white bg-[#ffa62f] w-full rounded-md py-3.5 disabled:opacity-50"
-            type="submit"
-            :disabled="submitting"
-          >
-            Login
-          </button>
+          <g-button type="submit" :disabled="submitting">login</g-button>
         </div>
         <div class="text-center">
           Don't have an account?
@@ -49,6 +41,8 @@
 </template>
 
 <script setup lang="ts">
+import GInput from '@/components/g-input.vue'
+import GButton from '@/components/g-button.vue'
 import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
 import { useAuthLogin } from '@/models/Auth'

@@ -1,12 +1,13 @@
 import { useApi } from '@/lib/api'
 import router from '@/router'
 import axios from 'axios'
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 
 export function useAuthLogin() {
   const api = useApi()
   const submitting = ref(false)
   const errors = ref<FormError>({})
+
   const form = reactive({
     email: '',
     password: '',
@@ -16,7 +17,7 @@ export function useAuthLogin() {
     submitting.value = true
     try {
       const response = await api.POST<AuthResponse>('api/login', form)
-      // console.log(response)
+      console.log(response)
       return response
     } catch (error) {
       errors.value = api.formErrors(error)
