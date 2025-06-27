@@ -3,10 +3,20 @@ import router from '@/router'
 import axios from 'axios'
 import { computed, reactive, ref } from 'vue'
 
-export function useAuthLogin() {
+const useAuthBase = () => {
   const api = useApi()
   const submitting = ref(false)
   const errors = ref<FormError>({})
+
+  return {
+    api,
+    submitting,
+    errors,
+  }
+}
+
+export function useAuthLogin() {
+  const { api, submitting, errors } = useAuthBase()
 
   const form = reactive({
     email: '',
@@ -34,6 +44,36 @@ export function useAuthLogin() {
   }
 }
 
+export function useAuthRegister() {
+  const { api, submitting, errors } = useAuthBase()
+
+  const form = reactive({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+    plate_number: '',
+  })
+
+  const submit = async () => {
+    submitting.value = true
+    try {
+      const response = await api.POST<AuthResponse>('api/register', form)
+      return response
+    } catch (error) {
+      errors.value = api.formErrors(error)
+    } finally {
+      submitting.value = false
+    }
+  }
+
+  return {
+    form,
+    submitting,
+    errors,
+    submit,
+  }
+}
 // export function useAuthModel() {
 //   //login function
 
