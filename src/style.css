@@ -1,1 +1,19 @@
 @import 'tailwindcss';
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@utility font-fredoka {
+  font-family: 'Fredoka', sans-serif;
+}
+
+/* Font Fredoka */
+@font-face {
+  font-family: 'Fredoka';
+  src: url('../assets/fonts/Fredoka/Fredoka-VariableFont_wdth,wght.ttf');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}

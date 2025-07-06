@@ -4,6 +4,7 @@ import LayoutAuth from '../layouts/auth/layout-auth.vue'
 import LayoutApp from '../layouts/app/layout-app.vue'
 import Login from '../views/auth/login/page-login.vue'
 import Register from '../views/auth/register/page-register.vue'
+import PageDashboard from '../views/dashboard/page-dashboard.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,8 +32,8 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'home',
-          component: HomeView,
+          name: 'dashboard',
+          component: PageDashboard,
           meta: { requiresAuth: true },
         },
       ],
