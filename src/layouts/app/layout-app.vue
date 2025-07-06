@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#b09d9d] min-h-screen">
+  <div class="bg-[#b99c99] min-h-screen">
     <component-navbar />
     <div class="container">
       <router-view />

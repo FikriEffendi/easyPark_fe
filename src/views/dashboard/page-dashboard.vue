@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center h-dvh gap-7">
     <router-link
-      to=""
+      :to="{ name: 'booking' }"
       class="bg-[#d9d9d9] px-32 w-80 rounded-2xl hover:bg-[#d6d0d0] transition-all py-9"
     >
       Booking

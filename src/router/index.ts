@@ -5,6 +5,7 @@ import LayoutApp from '../layouts/app/layout-app.vue'
 import Login from '../views/auth/login/page-login.vue'
 import Register from '../views/auth/register/page-register.vue'
 import PageDashboard from '../views/dashboard/page-dashboard.vue'
+import PageBooking from '../views/booking/page-booking.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +31,18 @@ const router = createRouter({
       component: LayoutApp,
       meta: { requiresAuth: true },
       children: [
+        {
+          path: '',
+          name: 'dashboard',
+          component: PageDashboard,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'booking',
+          name: 'booking',
+          component: PageBooking,
+          meta: { requiresAuth: true },
+        },
         {
           path: '',
           name: 'dashboard',
