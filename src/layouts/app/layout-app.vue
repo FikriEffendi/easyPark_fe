@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#b99c99] min-h-screen">
     <component-navbar />
-    <div class="container">
+    <div class="container pt-20">
       <router-view />
     </div>
   </div>
