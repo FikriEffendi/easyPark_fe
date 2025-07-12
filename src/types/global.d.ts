@@ -17,3 +17,19 @@ interface ApiError {
 interface FormError {
   [k: string]: string[]
 }
+
+interface ParkingSpot {
+  id: number
+  spot_name: string
+  is_occupied: boolean
+}
+
+interface Reservation {
+  id: number
+  status: string
+  user: User
+  spot: ParkingSpot
+  qr_code: string
+  expired_at: string
+  billing: any
+}
