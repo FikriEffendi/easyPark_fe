@@ -1,4 +1,5 @@
 <template>
+  <router-link to="/" class="py-2 px-4 bg-amber-400 rounded-xl">Kembali</router-link>
   <main class="flex flex-col items-center gap-6 py-12 px-4">
     <h2 class="text-xl font-semibold">Parking Slots</h2>
 
