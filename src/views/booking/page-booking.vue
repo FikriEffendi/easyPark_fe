@@ -14,6 +14,34 @@
 
     <!-- Grid Slot -->
     <parking-grid :spots="filteredSpots" />
+
+    <!-- Reservation Button -->
+    <g-button
+      @click="createReservation"
+      class="w-full max-w-md"
+      type="button"
+      :disabled="submitting || !selectedSpotId || reservationSuccess"
+      >{{ submitting ? Memproses : 'Pesan Tempat Parkir' }}</g-button
+    >
+
+    <!-- Success message -->
+    <div
+      v-if="reservationSuccess"
+      class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded w-full max-w-md mt-4"
+    >
+      <p>Reservasi berhasil! Tempat parkir telah dipesan.</p>
+    </div>
+
+    <!-- Error message -->
+    <div
+      v-if="Object.keys(errors).length > 0"
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded w-full max-w-md mt-4"
+    >
+      <p>Terjadi kesalahan saat memesan tempat parkir</p>
+      <ul class="list-disc pl-5">
+        <li v-for="(error, key) in errors" :key="key">{{ error[0] }}</li>
+      </ul>
+    </div>
   </main>
 </template>
 
@@ -21,19 +49,48 @@
 import { computed, onMounted, ref } from 'vue'
 import ParkingGrid from '@/components/parking-grid.vue'
 import { useApi } from '@/lib/api'
+import { useReservationStore } from '@/stores/reservation'
+import { useReservationPost } from '@/models/Reservation'
+import GButton from '@/components/g-button.vue'
 
 const api = useApi()
+const store = useReservationStore()
+const { submitting, errors, reservation, createReservation: create } = useReservationPost()
+
 const selectedFloor = ref('A')
 const parkingSpots = ref([])
+const reservationSuccess = ref(false)
 
 const filteredSpots = computed(() => {
   return parkingSpots.value.filter((spot) => spot.spot_name.startsWith(selectedFloor.value))
+})
+
+const selectedSpotId = computed(() => {
+  return store.selectedSpotId
 })
 
 const getData = async () => {
   const response = await api.GET('api/parking-spots')
   parkingSpots.value = response.data || []
   console.log(response)
+}
+
+const createReservation = async () => {
+  if (!selectedSpotId.value) return
+
+  try {
+    const result = await create(selectedSpotId.value)
+    if (result) {
+      reservationSuccess.value = true
+      const spotIndex = parkingSpots.value.findIndex((spot) => spot.id === selectedSpotId.value)
+      if (!spotIndex) {
+        parkingSpots.value[spotIndex].is_occupied = true
+      }
+      store.setSelectedSpot(null)
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const floors = [

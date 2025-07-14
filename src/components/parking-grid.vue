@@ -3,7 +3,15 @@
     <div
       v-for="spot in spots"
       :key="spot.id"
-      class="bg-[#8f5f5c] text-white py-4 text-center rounded-md font-semibold"
+      :class="[
+        'py-4 text-center rounded-md font-semibold cursor-pointer transition-colors',
+        {
+          'bg-[#8f5f5c] text-white': !spot.is_occupied && spot.id !== selectedSpotId,
+          'bg-gray-400 text-gray-700': spot.is_occupied,
+          'bg-amber-300 text-black': spot.id === store.selectedSpotId,
+        },
+      ]"
+      @click="selectedSpot(spot)"
     >
       {{ spot.spot_name }}
     </div>
@@ -11,6 +19,8 @@
 </template>
 
 <script setup>
+import { useReservationStore } from '@/stores/reservation'
+
 defineProps({
   spots: {
     type: Array,
@@ -18,4 +28,16 @@ defineProps({
     default: () => [],
   },
 })
+
+const store = useReservationStore()
+
+const selectedSpot = (spot) => {
+  if (!spot.is_occupied) {
+    if (store.selectedSpotId === spot.id) {
+      store.setSelectedSpot(null)
+    } else {
+      store.setSelectedSpot(spot.id)
+    }
+  }
+}
 </script>
