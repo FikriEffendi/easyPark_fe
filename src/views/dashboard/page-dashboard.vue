@@ -7,7 +7,7 @@
       Booking
     </router-link>
     <router-link
-      to=""
+      :to="{ name: 'riwayat' }"
       class="bg-[#d9d9d9] px-32 w-80 rounded-2xl hover:bg-[#d6d0d0] transition-all py-9"
     >
       Riwayat

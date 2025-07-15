@@ -22,7 +22,7 @@
       class="w-full max-w-md"
       type="button"
       :disabled="submitting || !selectedSpotId || reservationSuccess"
-      >{{ submitting ? Memproses : 'Pesan Tempat Parkir' }}</g-button
+      >{{ submitting ? 'Memproses' : 'Pesan Tempat Parkir' }}</g-button
     >
 
     <!-- Success message -->
@@ -46,7 +46,7 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import ParkingGrid from '@/components/parking-grid.vue'
 import { useApi } from '@/lib/api'
@@ -59,7 +59,7 @@ const store = useReservationStore()
 const { submitting, errors, reservation, createReservation: create } = useReservationPost()
 
 const selectedFloor = ref('A')
-const parkingSpots = ref([])
+const parkingSpots = ref<ParkingSpot[]>([])
 const reservationSuccess = ref(false)
 
 const filteredSpots = computed(() => {
