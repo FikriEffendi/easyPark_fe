@@ -1,7 +1,17 @@
 <template>
-  <div class="w-full max-w-2xl py-14">
+  <div class="space-y-2">
     <template v-for="item in lists" :key="item.id">
-      <div class="bg-[#D9D9D9] rounded-xl">{{ item.spot.spot_name }}</div>
+      <div class="bg-[#D9D9D9] hover:bg-[#E8E8E8] min-w-2xl py-14 rounded-xl flex justify-around">
+        <div class="text-center">
+          <div class="font-bold text-2xl">Tempat parkir</div>
+
+          <div class="text-xl">{{ item.spot.spot_name }}</div>
+        </div>
+        <div class="text-center">
+          <div class="font-bold text-2xl">status</div>
+          <div class="text-xl">{{ item.reservation_status }}</div>
+        </div>
+      </div>
     </template>
   </div>
 </template>
