@@ -72,7 +72,7 @@ const selectedSpotId = computed(() => {
 
 const getData = async () => {
   const response = await api.GET('api/parking-spots')
-  parkingSpots.value = response.data || []
+  parkingSpots.value = response.data
   console.log(response)
 }
 

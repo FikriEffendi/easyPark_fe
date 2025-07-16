@@ -33,3 +33,8 @@ interface Reservation {
   expired_at: string
   billing: any
 }
+
+interface History {
+  reservation_status: string
+  spot: ParkingSpot
+}

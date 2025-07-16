@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <riwayat-card />
+    <riwayat-card :lists="listRiwayat" />
   </div>
 </template>
 
@@ -10,10 +10,11 @@ import { useApi } from '@/lib/api'
 import { ref } from 'vue'
 
 const api = useApi()
-const listRiwayat = ref([])
+const listRiwayat = ref<History[]>([])
 
 const getData = async () => {
   const response = await api.GET('/api/reservations')
+  listRiwayat.value = response.data
   console.log(response)
 }
 

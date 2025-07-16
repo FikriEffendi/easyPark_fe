@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-[#D9D9D9] w-full max-w-2xl py-14 rounded-xl">Halo</div>
+  <div class="bg-[#D9D9D9] w-full max-w-2xl py-14 rounded-xl"></div>
 </template>
 
 <script setup>
 defineProps({
-  title: {
-    type: String,
+  lists: {
+    type: Array,
     required: true,
   },
 })
