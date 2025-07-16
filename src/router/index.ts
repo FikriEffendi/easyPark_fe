@@ -7,6 +7,7 @@ import Register from '../views/auth/register/page-register.vue'
 import PageDashboard from '../views/dashboard/page-dashboard.vue'
 import PageBooking from '../views/booking/page-booking.vue'
 import PageRiwayat from '../views/riwayat/page-riwayat.vue'
+import PageRiwayatDetail from '@/views/detail-riwayat/page-riwayat-detail.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +49,12 @@ const router = createRouter({
           path: 'riwayat',
           name: 'riwayat',
           component: PageRiwayat,
+          meta: { requiresAuth: true },
+        },
+        {
+          path: 'riwayat/:id',
+          name: 'riwayat-detail',
+          component: PageRiwayatDetail,
           meta: { requiresAuth: true },
         },
       ],
