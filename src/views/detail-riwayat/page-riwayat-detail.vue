@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col items-center">
     <section-header />
-    <section-qr-code />
-    <section-detail-card />
+    <section-qr-code v-if="riwayatDetail" :qrCode="riwayatDetail.qr_code" />
+    <section-detail-card v-if="riwayatDetail" :user="riwayatDetail.user" />
   </div>
 </template>
 
@@ -20,7 +20,7 @@ const riwayatDetail = ref<Reservation>()
 
 const getData = async () => {
   const response = await api.GET<Reservation>(`/api/reservations/${route.params.id}`)
-  riwayatDetail.value = response.value
+  riwayatDetail.value = response
   console.log(response)
 }
 
