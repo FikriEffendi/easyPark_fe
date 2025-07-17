@@ -13,9 +13,9 @@ const api = useApi()
 const listRiwayat = ref<History[]>([])
 
 const getData = async () => {
-  const response = await api.GET('/api/reservations')
+  const response = await api.GET<History[]>('/api/reservations')
   listRiwayat.value = response.data
-  console.log(response)
+  // console.log(response)
 }
 
 getData()
