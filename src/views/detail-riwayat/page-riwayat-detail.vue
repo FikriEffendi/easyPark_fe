@@ -1,11 +1,18 @@
 <template>
-  <div>Halo</div>
+  <div class="flex flex-col items-center">
+    <section-header />
+    <section-qr-code />
+    <section-detail-card />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useApi } from '@/lib/api'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import SectionHeader from './section-header.vue'
+import SectionDetailCard from './section-detail-card.vue'
+import SectionQrCode from './section-qr-code.vue'
 
 const api = useApi()
 const route = useRoute()
